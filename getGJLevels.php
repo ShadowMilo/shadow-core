@@ -87,7 +87,7 @@ if ($diff != "-") {
 
 
 //this probably fetches the levels
-$query = $conn->prepare("SELECT * FROM gjlevels $where $diffSql $order LIMIT 10 OFFSET {$page}0");
+$query = $conn->prepare("SELECT * FROM levels $where $diffSql $order LIMIT 10 OFFSET {$page}0");
 $query->execute();
 $levelResult = $query->fetchAll();
 
@@ -98,7 +98,7 @@ if (empty($levelResult)) {
 
 //how many levels?
 if ($realLevelCount) {
-    $query = $conn->prepare("SELECT COUNT(*) FROM gjlevels $where $diffSql");
+    $query = $conn->prepare("SELECT COUNT(*) FROM levels $where $diffSql");
     $query->execute();
     $amountOfLevels = $query->fetchColumn();
 }
