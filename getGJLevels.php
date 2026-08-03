@@ -13,8 +13,8 @@ if (!isset($_POST["type"])) {
 // params from client
 $page = isset($_POST["page"]) ? $_POST["page"] : 0;
 $type = $_POST["type"];
-$str = isset($_POST["str"]);
-$diff = isset($_POST["diff"]) ? $_POST["diff"];
+$str = isset($_POST["str"]) ? $_POST["str"] : "";
+$diff = isset($_POST["diff"]) ? $_POST["diff"] : "";
 
 // what do these even do?
 $where = null;
@@ -30,6 +30,7 @@ switch ($type) {
         } else {
             $where = "WHERE name LIKE '%{$str}%'";
         }
+        break;
     case 1:
         // search by downloads
         $order = "ORDER BY downloads DESC";
@@ -79,7 +80,8 @@ if ($diff != "-") {
         } else {
             $diffSql .= "diff = {$diffnum} OR ";
         }
-    $diffSQL .= ")";
+    }
+    $diffSql .= ")";
 }
 //that stuff was taken from MirrorCore, got zero clue how that works.
 
@@ -118,7 +120,7 @@ foreach ($levelResult as $row) {
     }
 
     //parameter time :)
-    $levelObject .= "1:{row['levelID']}:2:{row['name']}:3:{row['description']}:5:{row['version']}:6:{row['userID']}:8:{$difficultyDenominator}:9:{row['diff']}:10:{row['downloads']}:11:0:12:{row['song']}:13:{row['gameVersion']}:14:{row['likes']}:15:{row['length']}|";
+    $levelObject .= "1:{$row['levelID']}:2:{$row['name']}:3:{$row['description']}:5:{$row['version']}:6:{$row['userID']}:8:{$difficultyDenominator}:9:{$row['diff']}:10:{$row['downloads']}:11:0:12:{$row['song']}:13:{$row['gameVersion']}:14:{$row['likes']}:15:{$row['length']}|";
     $creatorObject .= "{$row['userID']}:{$row['username']}|";
 }
 $levelObject = substr($levelObject, 0, -1);
