@@ -1,5 +1,6 @@
 <?php
 include "incl/connection.php";
+include "incl/config.php";
 
 // check secret
 if (!isset($_POST["secret"]) || $_POST["secret"] !== "Wmfd2893gb7") {
