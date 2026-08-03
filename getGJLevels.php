@@ -39,6 +39,11 @@ switch ($type) {
         // search by likes
         $order = "ORDER BY likes DESC";
         break;
+    case 3:
+        // featured tab (written by me)
+        $order = "ORDER BY featuredScore DESC";
+        $where = "WHERE featureType > 0";
+        break;
     case 4:
         // TO THE RECENT TAAAAAAAAAAAAAB
         $order = "ORDER BY levelID DESC";
