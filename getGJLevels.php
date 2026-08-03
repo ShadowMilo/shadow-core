@@ -6,7 +6,7 @@ include "incl/config.php";
 if (!isset($_POST["secret"]) || $_POST["secret"] !== "Wmfd2893gb7") {
     exit("-1, thats not the secret silly");    
 }
-if !isset($_POST[type]) {
+if (!isset($_POST["type"])) {
     exit("-1, please supply a search type sir");
 }
 
@@ -41,6 +41,7 @@ switch ($type) {
     case 4:
         // TO THE RECENT TAAAAAAAAAAAAAB
         $order = "ORDER BY levelID DESC";
+        break;
     case 5:
         // user's levels (not gonna work yet)
         if (is_numeric($str)) {
@@ -67,8 +68,8 @@ if ($diff != "-") {
     }
 
     $diffSql .= "(";
-    foreach ($diffs as $difficulty+ {
-        if )$difficulty != -1) {
+    foreach ($diffs as $difficulty) {
+        if ($difficulty != -1) {
             $diffnum = "{$difficulty}0";
         } else {
             $diffnum = 0;
@@ -102,7 +103,7 @@ if ($realLevelCount) {
 
 //create the response
 //gd is stupid so this is weird
-$response = ""
+$response = "";
 
 //level object
 //why is this in the php and not in the client
@@ -117,8 +118,8 @@ foreach ($levelResult as $row) {
     }
 
     //parameter time :)
-    $levelObject .= "1:{row["levelID"]}:2:{row["name"]}:3:{row["description"]}:5:{row["version"]}:6:{row["userID"]}:8:{$difficultyDenominator}:9:{row["diff"]}:10:{row["downloads"]}:11:0:12:{row["song"]}:13:{row["gameVersion"]}:14:{row["likes"]}:15:{row["length"]}|";
-    $creatorObject .= "{$row["userID"]}:{$row["username"]}|";
+    $levelObject .= "1:{row['levelID']}:2:{row['name']}:3:{row['description']}:5:{row['version']}:6:{row['userID']}:8:{$difficultyDenominator}:9:{row['diff']}:10:{row['downloads']}:11:0:12:{row['song']}:13:{row['gameVersion']}:14:{row['likes']}:15:{row['length']}|";
+    $creatorObject .= "{$row['userID']}:{$row['username']}|";
 }
 $levelObject = substr($levelObject, 0, -1);
 $creatorObject = substr($creatorObject, 0, -1);
