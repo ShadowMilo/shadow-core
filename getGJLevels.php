@@ -39,6 +39,11 @@ switch ($type) {
         // search by likes
         $order = "ORDER BY likes DESC";
         break;
+    case 3:
+        // featured tab (written by me)
+        $order = "ORDER BY featuredScore DESC";
+        $where = "WHERE featureType > 0";
+        break;
     case 4:
         // TO THE RECENT TAAAAAAAAAAAAAB
         $order = "ORDER BY levelID DESC";
@@ -87,7 +92,7 @@ if ($diff != "-") {
 
 
 //this probably fetches the levels
-$query = $conn->prepare("SELECT * FROM gjlevels $where $diffSql $order LIMIT 10 OFFSET {$page}0");
+$query = $conn->prepare("SELECT * FROM levels $where $diffSql $order LIMIT 10 OFFSET {$page}0");
 $query->execute();
 $levelResult = $query->fetchAll();
 
@@ -98,7 +103,7 @@ if (empty($levelResult)) {
 
 //how many levels?
 if ($realLevelCount) {
-    $query = $conn->prepare("SELECT COUNT(*) FROM gjlevels $where $diffSql");
+    $query = $conn->prepare("SELECT COUNT(*) FROM levels $where $diffSql");
     $query->execute();
     $amountOfLevels = $query->fetchColumn();
 }
@@ -125,7 +130,7 @@ foreach ($levelResult as $row) {
 }
 $levelObject = substr($levelObject, 0, -1);
 $creatorObject = substr($creatorObject, 0, -1);
-$response .= "{$levelObject}#{$creatorObject}";
+$response = "{$levelObject}#{$creatorObject}#";
 // allat for *one level*
 // i hate gd sometimes
 
