@@ -130,7 +130,8 @@ foreach ($levelResult as $row) {
 }
 $levelObject = substr($levelObject, 0, -1);
 $creatorObject = substr($creatorObject, 0, -1);
-$response = "{$levelObject}#{$creatorObject}#";
+$response .
+    = "{$levelObject}#{$creatorObject}#";
 // allat for *one level*
 // i hate gd sometimes
 
