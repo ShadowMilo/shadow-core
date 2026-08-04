@@ -1,4 +1,5 @@
 <?php
+
 include "incl/connection.php";
 include "incl/config.php";
 
