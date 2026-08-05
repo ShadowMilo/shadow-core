@@ -15,7 +15,7 @@ if (!isset($_POST["type"])) {
 $page = isset($_POST["page"]) ? $_POST["page"] : 0;
 $type = $_POST["type"];
 $str = isset($_POST["str"]) ? $_POST["str"] : "";
-$diff = isset($_POST["diff"]) ? $_POST["diff"] : "";
+$diff = isset($_POST["difficultyNumerator"]) ? $_POST["difficultyNumerator"] : "";
 
 // what do these even do?
 $where = null;
