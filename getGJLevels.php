@@ -93,7 +93,7 @@ if ($diff != "-") {
 
 
 //this probably fetches the levels
-$query = $conn->prepare("SELECT * FROM levels $where $diffSql $order LIMIT 10 OFFSET {$page}0");
+$query = $conn->prepare("SELECT * FROM levels {$where} {$diffSql} {$order} LIMIT 10 OFFSET {$page}");
 $query->execute();
 $levelResult = $query->fetchAll();
 
