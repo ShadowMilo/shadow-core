@@ -22,6 +22,10 @@ $updateQuery = $conn->prepare("UPDATE levels SET downloads = downloads + 1 WHERE
 $updateQuery->execute([':levelID' => $levelID]);
 }
 
+// update trending score
+$trendingQuery = $conn->prepare("UPDATE levels SET trendingScore = trendingScore + 1 WHERE levelID = :levelID");
+$trendingQuery->execute([':levelID' => $levelID]);
+
 // Xan was here.
 $query = $conn->prepare("SELECT * FROM levels WHERE levelID = :levelID");
 $query->execute([":levelID" => $levelID]);
