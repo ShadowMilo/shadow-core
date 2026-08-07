@@ -17,14 +17,14 @@ class GDPS {
      * otherwise create a new user in the
      * 'users' table
      */
-    $query = $conn->prepare("SELECT * FROM gjUsers WHERE udid = :udid");
+    $query = $conn->prepare("SELECT * FROM users WHERE udid = :udid");
     $query->execute([":udid" => $udid]);
     if ($query->rowcount() > 0) {
       $userID = $query->fetchColumn();
     } else {
       // Create a new user
-      $query = $conn->prepare("INSERT INTO gjUsers (udid, userName) VALUES (:udid, :userName)");
-      $query->execute([":udid" => $udid, ":userName" => $userName]);
+      $query = $conn->prepare("INSERT INTO users (udid, username) VALUES (:udid, :userName)");
+      $query->execute([":udid" => $udid, ":username" => $userName]);
       $userID = $conn->lastInsertId();
     }
     return $userID;
