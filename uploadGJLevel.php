@@ -4,17 +4,17 @@ include "incl/gdpsLib.php";
 
 // Secret
 if (!isset($_POST["secret"]) || $_POST["secret"] != "Wmfd2893gb7") {
-    exit("-1");
+    exit("-1, not the secret");
 }
 
 // Level ID
 if (!isset($_POST["levelID"])) {
-    exit("-1");
+    exit("-1, give level id");
 }
 
 // UDID
 if (!isset($_POST["udid"])) {
-    exit("-1");
+    exit("-1, give udid");
 }
 
 $gameVersion = $_POST["gameVersion"];
@@ -31,10 +31,10 @@ $levelLength = $_POST["levelLength"];
 $audioTrack = $_POST["audioTrack"];
 
 if ($levelID == 0) {
-    $query = $conn->prepare("INSERT INTO gjLevels (levelName, difficultyNumerator, officialSong, gameVersion, levelVersion, downloads, likes, description, userID, userName, length) VALUES ('$levelName', '0', '$audioTrack', '$gameVersion', '$levelVersion', '0', '0', '$levelDesc', '$userID', '$userName', '$levelLength')");
+    $query = $conn->prepare("INSERT INTO levels (name, diff, song, gameVersion, version, downloads, likes, description, userID, username, length) VALUES ('$levelName', '0', '$audioTrack', '$gameVersion', '$levelVersion', '0', '0', '$levelDesc', '$userID', '$userName', '$levelLength')");
     $query->execute();
 
-    $query = $conn->prepare("SELECT * FROM gjLevels ORDER BY levelID DESC LIMIT 1");
+    $query = $conn->prepare("SELECT * FROM levels ORDER BY levelID DESC LIMIT 1");
     $query->execute();
     $newLevelID = $query->fetchAll();
     $newLevelID = $newLevelID[0]["levelID"];
@@ -43,8 +43,8 @@ if ($levelID == 0) {
     echo $newLevelID;
 } else {
     // Update the level
-    $query = $conn->prepare("UPDATE gjLevels SET levelVersion = :levelVersion, length = :length WHERE levelID = :levelID");
-    $query->execute(["levelVersion" => $levelVersion, "length" => $levelLength, "levelID" => $levelID]);
+    $query = $conn->prepare("UPDATE levels SET version = :levelVersion, length = :length WHERE levelID = :levelID");
+    $query->execute(["version" => $levelVersion, "length" => $levelLength, "levelID" => $levelID]);
 
     file_put_contents("levels/$levelID", $levelString);
     echo $levelID;
