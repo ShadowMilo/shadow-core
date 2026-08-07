@@ -14,6 +14,14 @@ if (!isset($_POST["levelID"])) {
 
 $levelID = $_POST["levelID"];
 
+// ShadowMilo was here.
+$inc = intval($_POST["inc"]);
+
+if ($inc == 1) {
+$updateQuery = $conn->prepare("UPDATE levels SET downloads = downloads + 1 WHERE levelID = :levelID");
+$updateQuery->execute([':levelID' => $levelID]);
+}
+
 // Xan was here.
 $query = $conn->prepare("SELECT * FROM levels WHERE levelID = :levelID");
 $query->execute([":levelID" => $levelID]);
