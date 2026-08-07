@@ -24,7 +24,7 @@ class GDPS {
     } else {
       // Create a new user
       $query = $conn->prepare("INSERT INTO users (udid, username) VALUES (:udid, :userName)");
-      $query->execute([":udid" => $udid, ":username" => $userName]);
+      $query->execute([":udid" => $udid, ":userName" => $userName]);
       $userID = $conn->lastInsertId();
     }
     return $userID;
