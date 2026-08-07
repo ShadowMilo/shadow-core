@@ -11,4 +11,7 @@ $levelID = intval($_POST["levelID"]);
 $query = $conn->prepare("UPDATE levels SET likes = likes + 1 WHERE levelID = :levelID");
 $query->execute([":levelID" => $levelID]);
 echo "1";
+// and now we update trending
+$trendingQuery = $conn->prepare("UPDATE levels SET trendingScore = trendingScore + 5 WHERE levelID = :levelID");
+$trendingQuery->execute([':levelID' => $levelID]);
 ?>
