@@ -8,7 +8,7 @@ if (!isset($_POST["secret"]) || $_POST["secret"] !== "Wmfd2893gb7") {
 // get level id
 $levelID = intval($_POST["levelID"]);
 // update db
-$query = $db->prepare("UPDATE levels SET likes = likes + 1 WHERE levelID = :levelID");
+$query = $conn->prepare("UPDATE levels SET likes = likes + 1 WHERE levelID = :levelID");
 $query->execute([":levelID" => $levelID]);
 echo "1";
 ?>
