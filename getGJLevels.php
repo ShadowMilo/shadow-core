@@ -66,6 +66,7 @@ switch ($type) {
         exit("-1, thats not a search type silly");
         
 }
+
 // difficulty filters
 $diffSql = null;
 if ($diff != "-") {
@@ -96,7 +97,7 @@ if ($diff != "-") {
 
 
 //this probably fetches the levels
-$query = $conn->prepare("SELECT * FROM levels $where $diffSql $order LIMIT 10 OFFSET {$page}0");
+$query = $conn->prepare("SELECT * FROM levels {$where} {$diffSql} {$order} LIMIT 10 OFFSET {$page}");
 $query->execute();
 $levelResult = $query->fetchAll();
 
@@ -134,8 +135,7 @@ foreach ($levelResult as $row) {
 }
 $levelObject = substr($levelObject, 0, -1);
 $creatorObject = substr($creatorObject, 0, -1);
-$response .
-    = "{$levelObject}#{$creatorObject}#";
+$response .= "{$levelObject}#{$creatorObject}#";
 // allat for *one level*
 // i hate gd sometimes
 
@@ -151,3 +151,4 @@ $response .= ":{$page}0:".count($levelResult);
 //and finally...
 echo $response;
 ?>
+        
