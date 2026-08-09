@@ -2,10 +2,10 @@
 //TAKEN FROM MIRRORCORE
 /**
  * replaces search results with 9999 levels like in base gd
- * when false, it will use the actual level count.
- * disabled here because it is such a stupid feature.
+ * when true, it will use the actual level count.
+ * enabled here because it is such a stupid feature to be 9999.
  */
-$realLevelCount = false;
+$realLevelCount = true;
 
 /**
  * allows anyone to rate levels
