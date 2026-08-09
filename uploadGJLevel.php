@@ -31,6 +31,8 @@ $levelLength = $_POST["levelLength"];
 $audioTrack = $_POST["audioTrack"];
 
 if ($levelID == 0) {
+    $updateTrending = $conn->prepare("UPDATE levels SET trendingScore = :trendingScore - 10 WHERE trendingScore > -10");
+    $updateTrending->execute();
     $query = $conn->prepare("INSERT INTO levels (name, diff, song, gameVersion, version, downloads, likes, description, userID, username, length) VALUES ('$levelName', '0', '$audioTrack', '$gameVersion', '$levelVersion', '0', '0', '$levelDesc', '$userID', '$userName', '$levelLength')");
     $query->execute();
 
