@@ -39,6 +39,11 @@ switch ($type) {
         // search by likes
         $order = "ORDER BY likes DESC";
         break;
+    case 3:
+        // trending yay
+        $order = "ORDER BY trendingScore DESC";
+        $where = "WHERE trendingScore > 9";
+        break;
     case 6:
         // featured tab (written by me)
         $order = "ORDER BY featureScore DESC";
