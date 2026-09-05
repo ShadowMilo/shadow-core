@@ -1,10 +1,19 @@
 <?php
-$levelID = "";
-$stars = "";
-$diff = "";
-$featureScore = "";
-$featureType = "";
-$password = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $levelID = $_POST['levelID'] ?? "";
+    $stars = $_POST['stars'] ?? "";
+    $diff = $_POST['diff'] ?? "";
+    $featureScore = $_POST['featureScore'] ?? "";
+    $featureType = $_POST['featureType'] ?? "";
+    $password = $_POST['password'] ?? "";
+} else {
+    $levelID = "";
+    $stars = "";
+    $diff = "";
+    $featureScore = "";
+    $featureType = "";
+    $password = "";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
