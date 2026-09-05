@@ -9,7 +9,7 @@ $password = "";
 <!DOCTYPE html>
 <html lang="en">
     <body>
-        <form action="rateGJLevel.php" method="POST">
+        <form action="rateLevel.php" method="POST">
             <label for="levelID">Level ID:</label>
             <input type="number" id="levelID" name="levelID" value="<?php echo $levelID; ?>"><br>
             <label for="stars">Stars:</label>
