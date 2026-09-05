@@ -19,7 +19,9 @@ $levelID = $_POST["levelID"];
 $rating = $_POST["rating"];
 
 // insert the rating into the database
-$query = $conn->prepare("INSERT INTO nonModSends (levelID, rating) VALUES ("$levelID", "$rating")");
+$query = $conn->prepare("INSERT INTO nonModSends (levelID, rating) VALUES (:levelID, :rating)");
+$query->bindParam(":levelID", $levelID);
+$query->bindParam(":rating", $rating);
 $query->execute();
 
 echo "1"; // success
