@@ -6,7 +6,7 @@ An open-source GDPS core, currently supporting 1.0!
 - Downloading levels
 - Liking levels
 - Trending tab!
-- Basic rate tool (currently non-functional)
+- Basic rate tool ~~(currently non-functional)~~ functional
 ## IN-PROGRESS
 - Dashboard
 ## PLANNED
