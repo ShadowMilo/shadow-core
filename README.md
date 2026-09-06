@@ -15,3 +15,5 @@ An open-source GDPS core, currently supporting 1.0!
 ## CREDITS
 - MirrorCore: base for 1.0
 - Wubba-jpeg: putting up with a php beginner to help me with this. ty :)
+## SHOWCASE
+https://shadowmilo.alwaysdata.net contains a example/testing GDPS that has uses ShadowCore.
