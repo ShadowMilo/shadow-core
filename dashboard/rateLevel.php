@@ -64,7 +64,7 @@ if ($levelCheck < 1) {
     exit;
 } else {
     // good password, valid feature type, level exists, rate the level.
-    $query = $conn->prepare("UPDATE levels SET (stars, diff, featureScore, featureType) VALUES (:stars, :diff, :featureScore, :featureType) WHERE levelID = :levelID");
+    $query = $conn->prepare("UPDATE levels SET stars = :stars, diff = :diff, featureScore = featureScore, featureType = featureType WHERE levelID = :levelID");
     $query->bindParam(':levelID', $levelID);
     $query->bindParam(':stars', $stars);
     $query->bindParam(':diff', $diff);
