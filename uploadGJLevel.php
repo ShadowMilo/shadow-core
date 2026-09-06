@@ -1,6 +1,7 @@
 <?php
 include "incl/connection.php";
 include "incl/gdpsLib.php";
+require "incl/ExploitPatch.php";
 
 // Secret
 if (!isset($_POST["secret"]) || $_POST["secret"] != "Wmfd2893gb7") {
@@ -17,24 +18,35 @@ if (!isset($_POST["udid"])) {
     exit("-1, give udid");
 }
 
-$gameVersion = $_POST["gameVersion"];
-$udid = $_POST["udid"];
-$userName = $_POST["userName"];
+$gameVersion = EXPLOIT::charclean($_POST["gameVersion"]);
+$udid = EXPLOIT::clean($_POST["udid"]);
+$userName = EXPLOIT::clean($_POST["userName"]);
 $userID = GDPS::getUserID($udid, $userName);
 
-$levelID = $_POST["levelID"];
-$levelName = $_POST["levelName"];
+$levelID = EXPLOIT::number($_POST["levelID"]);
+$levelName = EXPLOIT::clean($_POST["levelName"]);
 $levelDesc = GDPS::base64url_encode($_POST["levelDesc"]);
 $levelString = $_POST["levelString"];
-$levelVersion = $_POST["levelVersion"];
-$levelLength = $_POST["levelLength"];
-$audioTrack = $_POST["audioTrack"];
+$levelVersion = EXPLOIT::number($_POST["levelVersion"]);
+$levelLength = EXPLOIT::number($_POST["levelLength"]);
+$audioTrack = EXPLOIT::number($_POST["audioTrack"]);
 
 if ($levelID == 0) {
-    $updateTrending = $conn->prepare("UPDATE levels SET trendingScore = :trendingScore - 10 WHERE trendingScore > -10");
+    $updateTrending = $conn->prepare("UPDATE levels SET trendingScore = trendingScore - 10 WHERE trendingScore > -10");
     $updateTrending->execute();
-    $query = $conn->prepare("INSERT INTO levels (name, diff, song, gameVersion, version, downloads, likes, description, userID, username, length) VALUES ('$levelName', '0', '$audioTrack', '$gameVersion', '$levelVersion', '0', '0', '$levelDesc', '$userID', '$userName', '$levelLength')");
-    $query->execute();
+    
+    $query = $conn->prepare("INSERT INTO levels (name, udid, song, gameVersion, version, description, userID, username, length) VALUES (:name, :udid, :song, :gameVersion, :version, :description, :userID, :username, :length)");
+    $query->execute([
+        ":name" => $levelName,
+        ":udid" => $udid,
+        ":song" => $audioTrack,
+        ":gameVersion" => $gameVersion,
+        ":version" => $levelVersion,
+        ":description" => $levelDesc,
+        ":userID" => $userID,
+        ":username" => $userName,
+        ":length" => $levelLength
+    ]);
 
     $query = $conn->prepare("SELECT * FROM levels ORDER BY levelID DESC LIMIT 1");
     $query->execute();
@@ -45,8 +57,12 @@ if ($levelID == 0) {
     echo $newLevelID;
 } else {
     // Update the level
-    $query = $conn->prepare("UPDATE levels SET version = :levelVersion, length = :length WHERE levelID = :levelID");
-    $query->execute(["version" => $levelVersion, "length" => $levelLength, "levelID" => $levelID]);
+    $query = $conn->prepare("UPDATE levels SET version = :version, length = :length WHERE levelID = :levelID");
+    $query->execute([
+        ":version" => $levelVersion,
+        ":length" => $levelLength,
+        ":levelID" => $levelID
+    ]);
 
     file_put_contents("levels/$levelID", $levelString);
     echo $levelID;
