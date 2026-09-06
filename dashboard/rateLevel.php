@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 include "../incl/connection.php";
 include "../incl/password.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //check password
 if ($password != $adminPassword) {
     echo "Incorrect password. Refresh page to try again.";
@@ -81,5 +82,6 @@ if ($levelCheck < 1) {
         // not featured
         echo "Level $levelName (ID: $levelID) rated with star count $stars.";
     }
+}
 }
 ?>
