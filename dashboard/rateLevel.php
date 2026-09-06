@@ -53,7 +53,7 @@ if ($password != $adminPassword) {
 $validateLevelID = $conn->prepare("SELECT COUNT(*) FROM levels WHERE levelID = :levelID");
 $validateLevelID->bindParam(':levelID', $levelID);
 $validateLevelID->execute();
-$levelCheck = $validateLevelID->fetchColumn()
+$levelCheck = $validateLevelID->fetchColumn();
 if ($levelCheck < 1) {
     echo "Not a level on the GDPS. Refresh page to try again.";
     exit;
