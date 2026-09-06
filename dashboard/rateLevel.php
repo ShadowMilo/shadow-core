@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="number" id="levelID" name="levelID" value="<?php echo $levelID; ?>"><br>
             <label for="stars">Stars:</label>
             <input type="number" id="stars" name="stars" value="<?php echo $stars; ?>"><br>
-            <label for="diff">Difficulty: (10=easy, 20=normal, 30=hard, 40=insane)</label>
+            <label for="diff">Difficulty: (10=easy, 20=normal, 30=hard, 40=harder, 50=insane)</label>
             <input type="number" id="diff" name="diff" value="<?php echo $diff; ?>"><br>
             <label for="featureScore">Feature Score: (doesnt matter if not featured)</label>
             <input type="number" id="featureScore" name="featureScore" value="<?php echo $featureScore; ?>"><br>
@@ -49,7 +49,7 @@ if ($password != $adminPassword) {
     // feature type invalid
     echo "Please enter 0 (not featured) or 1 (featured). Refresh page to try again.";
     exit;
-} elseif ($diff != 10 && $diff != 20 && $diff != 30 && $diff != 40) {
+} elseif ($diff != 10 && $diff != 20 && $diff != 30 && $diff != 40 && $diff != 50) {
     echo "Invalid difficulty. Refresh page to try again.";
     exit;
 }
