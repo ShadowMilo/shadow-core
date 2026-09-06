@@ -1,4 +1,7 @@
 <?php
+// require not include dumazz
+require __DIR__ . "/../incl/connection.php";
+require_once __DIR__ . "/../incl/password.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $levelID = $_POST['levelID'] ?? "";
     $stars = $_POST['stars'] ?? "";
@@ -17,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
     <body>
         <form action="rateLevel.php" method="POST">
             <label for="levelID">Level ID:</label>
@@ -36,8 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </body>
 </html>
 <?php
-include "../incl/connection.php";
-include "../incl/password.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //check password
 if ($password != $adminPassword) {
