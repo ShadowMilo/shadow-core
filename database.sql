@@ -55,6 +55,7 @@ CREATE TABLE `levels` (
 --
 
 CREATE TABLE `nonModSends` (
+  `ratingID` int(11) NOT NULL,
   `levelID` int(11) NOT NULL,
   `rating` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -114,6 +115,13 @@ ALTER TABLE `levels`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+--
+-- i added this manually
+--
+ALTER TABLE `nonModSends`
+  MODIFY `ratingID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
