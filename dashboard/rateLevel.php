@@ -53,10 +53,11 @@ if ($password != $adminPassword) {
 $validateLevelID = $conn->prepare("SELECT COUNT(*) FROM levels WHERE levelID = :levelID");
 $validateLevelID->bindParam(':levelID', $levelID);
 $validateLevelID->execute();
-if ($validateLevelID->fetchColumn() < 1) {
+$levelCheck = $validateLevelID->fetchColumn()
+if ($levelCheck < 1) {
     echo "Not a level on the GDPS. Refresh page to try again.";
     exit;
-} elseif ($validateLevelID->fetchColumn() > 1) {
+} elseif ($levelCheck > 1) {
     echo "oh god theres a duplicate level id this should never happen.";
     echo "report bug at https://github.com/ShadowMilo/shadow-core/issues";
     exit;
