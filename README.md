@@ -1,5 +1,6 @@
 # ShadowCore
 An open-source GDPS core, currently supporting 1.0!
+# SHADOWCORE IS HEAVILY WIP AND IS NOT MEANT FOR PRODUCTION YET!!!!!!
 ## FEATURES
 - Uploading levels
 - Searching levels
@@ -16,4 +17,4 @@ An open-source GDPS core, currently supporting 1.0!
 - MirrorCore: base for 1.0
 - Wubba-jpeg: putting up with a php beginner to help me with this. ty :)
 ## SHOWCASE
-https://shadowmilo.alwaysdata.net contains a example/testing GDPS that has uses ShadowCore.
+https://shadowmilo.alwaysdata.net contains a example/testing GDPS that uses ShadowCore.
