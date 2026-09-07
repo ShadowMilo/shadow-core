@@ -79,10 +79,10 @@ if ($levelCheck < 1) {
     $levelName = $getLevelName->fetchColumn();
     if ($featureType == 1) {
         // say it was featured
-        echo "Level $levelName (ID: $levelID) featured with star count $stars and feature score $featureScore.";
+        echo htmlspecialchars("Level $levelName (ID: $levelID) featured with star count $stars and feature score $featureScore.", ENT_QUOTES, 'UTF-8');
     } else {
         // not featured
-        echo "Level $levelName (ID: $levelID) rated with star count $stars.";
+        echo htmlspecialchars("Level $levelName (ID: $levelID) rated with star count $stars.", ENT_QUOTES, 'UTF-8');
     }
 }
 }
