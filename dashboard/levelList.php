@@ -29,7 +29,7 @@ $result = $conn->query($query);
                 <tr>
                     <td><?php echo htmlspecialchars($level['levelID']); ?></td>
                     <td><?php echo htmlspecialchars($level['name']); ?></td>
-                    <td><?php echo htmlspecialchars($level['featured']); ?></td>
+                    <td><?php echo htmlspecialchars($level['featureType']); ?></td>
                     <td><?php echo htmlspecialchars($level['stars']); ?></td>
                 </tr>
             <?php endforeach; ?>
