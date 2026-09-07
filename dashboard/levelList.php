@@ -25,14 +25,14 @@ $result = $conn->query($query);
             </tr>
         </thead>
         <tbody>
-            <?php while ($level = $result->fetch_assoc()): ?>
+            <?php foreach ($result->fetchAll(PDO::FETCH_ASSOC) as $level): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($level['levelID']); ?></td>
                     <td><?php echo htmlspecialchars($level['name']); ?></td>
                     <td><?php echo htmlspecialchars($level['featured']); ?></td>
                     <td><?php echo htmlspecialchars($level['stars']); ?></td>
                 </tr>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </body>
