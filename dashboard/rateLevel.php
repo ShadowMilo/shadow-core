@@ -42,14 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //check password
-if ($password != $adminPassword) {
+if (password_hash($password) != $adminPassword) {
     echo "Incorrect password. Refresh page to try again.";
     exit;
 } elseif ($featureType < 0 || $featureType > 1) {
     // feature type invalid
     echo "Please enter 0 (not featured) or 1 (featured). Refresh page to try again.";
     exit;
-} elseif ($diff != 10 && $diff != 20 && $diff != 30 && $diff != 40 && $diff != 50) {
+} elseif ($diff != 10 && $diff != 20 && $diff != 30 && $diff != 40 &)& $diff != 50) {
     echo "Invalid difficulty. Refresh page to try again.";
     exit;
 }
