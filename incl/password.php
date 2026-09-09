@@ -1,3 +1,3 @@
 <?php
-$adminPassword = "password"; // CHANGE THIS!!!!!
+$adminPassword = password_hash("password"); // CHANGE THIS!!!!!
 ?>
