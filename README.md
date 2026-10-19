@@ -2,7 +2,7 @@
 >[!WARNING]
 > This version of the core is NOT finished and is still being written. do not use this in production.
 
-A brand new rewrite of the original v1 ShadowCore, with better security, frontend, and more.
+A brand new rewrite of the original v1 ShadowCore.
 ## Features
 - features
 
