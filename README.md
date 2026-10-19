@@ -15,16 +15,16 @@ A brand new rewrite of the original v1 ShadowCore, with better security, fronten
 - git
 
 ## Installation
-### #1. Clone the repository
+### 1. Clone the repository
 ```bash
 git clone https://github.com/ShadowMilo/shadow-core.git
 cd shadow-core.git
 ```
-### #2. Install dependencies
+### 2. Install dependencies
 ```bash
  composer install
 ```
-### #3. Rename .env.example -> .env and configure
+### 3. Rename .env.example -> .env and configure
 
 ### 4. Run migrations
 ```bash
