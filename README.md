@@ -1,3 +1,8 @@
+# ShadowCore v1
+The branch that holds the old, raw-php code from before the Laravel rewrite.
+## Incredibly slow/unoptimized, with broken user saving and potentially insecure admin tools. Use at your own risk.
+- Also has no dashboard CSS, and will not recive any further updates (except potentially fixing rateGJLevel.php and user saving).
+# Old readme:
 # ShadowCore
 An open-source GDPS core, currently supporting 1.0!
 # SHADOWCORE IS HEAVILY WIP AND IS NOT MEANT FOR PRODUCTION YET!!!!!!
