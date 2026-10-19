@@ -18,7 +18,7 @@ A brand new rewrite of the original v1 ShadowCore.
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/ShadowMilo/shadow-core.git
-cd shadow-core.git
+cd shadow-core
 ```
 ### 2. Install dependencies
 ```bash
