@@ -1,5 +1,7 @@
 <?php
-//shadow melon im copying your comments word for word
+
+// shadow melon im copying your comments word for word
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
@@ -14,22 +16,21 @@ class getlevel extends Controller
     }
 
     public function index(Request $request)
-   
     {
-         $realLevelCount = true;
+        $realLevelCount = true;
         // check secret
-        if (!isset($request["secret"]) || $request["secret"] !== "Wmfd2893gb7") {
-            return response("-1, thats not the secret silly")->header('Content-Type', 'text/plain');
+        if (! isset($request['secret']) || $request['secret'] !== 'Wmfd2893gb7') {
+            return response('-1, thats not the secret silly')->header('Content-Type', 'text/plain');
         }
-        if (!isset($request["type"])) {
-            return response("-1, please supply a search type sir")->header('Content-Type', 'text/plain');
+        if (! isset($request['type'])) {
+            return response('-1, please supply a search type sir')->header('Content-Type', 'text/plain');
         }
 
         // params from client
-        $page = isset($request["page"]) ? $request["page"] : 0;
-        $type = $request["type"];
-        $str = isset($request["str"]) ? $request["str"] : "";
-        $diff = isset($request["diff"]) ? $request["diff"] : "";
+        $page = isset($request['page']) ? $request['page'] : 0;
+        $type = $request['type'];
+        $str = isset($request['str']) ? $request['str'] : '';
+        $diff = isset($request['diff']) ? $request['diff'] : '';
 
         // what do these even do?
         $where = null;
@@ -48,51 +49,51 @@ class getlevel extends Controller
                 break;
             case 1:
                 // search by downloads
-                $order = "ORDER BY downloads DESC";
+                $order = 'ORDER BY downloads DESC';
                 break;
             case 2:
                 // search by likes
-                $order = "ORDER BY likes DESC";
+                $order = 'ORDER BY likes DESC';
                 break;
             case 3:
                 // trending yay
-                $order = "ORDER BY trendingScore DESC";
-                $where = "WHERE trendingScore > 9";
+                $order = 'ORDER BY trendingScore DESC';
+                $where = 'WHERE trendingScore > 9';
                 break;
             case 6:
                 // featured tab (written by me)
-                $order = "ORDER BY featureScore DESC";
-                $where = "WHERE featureType >= 1";
+                $order = 'ORDER BY featureScore DESC';
+                $where = 'WHERE featureType >= 1';
                 break;
             case 4:
                 // TO THE RECENT TAAAAAAAAAAAAAB
-                $order = "ORDER BY levelID DESC";
+                $order = 'ORDER BY levelID DESC';
                 break;
             case 5:
                 // user's levels (not gonna work yet)
                 if (is_numeric($str)) {
                     $where = "WHERE userID = '{$str}'";
-                    $order = "ORDER BY levelID DESC";
+                    $order = 'ORDER BY levelID DESC';
                 } else {
-                    return response("-1, user ids are numeric dumdum")->header('Content-Type', 'text/plain');
+                    return response('-1, user ids are numeric dumdum')->header('Content-Type', 'text/plain');
                 }
                 break;
             default:
-                return response("-1, thats not a search type silly")->header('Content-Type', 'text/plain');
+                return response('-1, thats not a search type silly')->header('Content-Type', 'text/plain');
         }
 
         // difficulty filters
         $diffSql = null;
-        if ($diff != "-" && $diff != "") {
-            $diffs = explode(",", $diff);
+        if ($diff != '-' && $diff != '') {
+            $diffs = explode(',', $diff);
 
             if (isset($where)) {
-                $diffSql = " AND (";
+                $diffSql = ' AND (';
             } else {
-                $diffSql = " WHERE (";
+                $diffSql = ' WHERE (';
             }
 
-            $diffSql .= "(";
+            $diffSql .= '(';
             foreach ($diffs as $difficulty) {
                 if ($difficulty != -1) {
                     $diffnum = "{$difficulty}0";
@@ -105,7 +106,7 @@ class getlevel extends Controller
                     $diffSql .= "diff = {$diffnum} OR ";
                 }
             }
-            $diffSql .= ")";
+            $diffSql .= ')';
         }
 
         // this probably fetches the levels
@@ -113,7 +114,7 @@ class getlevel extends Controller
 
         // are there even levels?
         if (empty($levelResult)) {
-            return response("-1, theres no levels here")->header('Content-Type', 'text/plain');
+            return response('-1, theres no levels here')->header('Content-Type', 'text/plain');
         }
 
         // how many levels?
@@ -123,7 +124,7 @@ class getlevel extends Controller
 
         // create the response
         // gd is stupid so this is weird
-        $response = "";
+        $response = '';
 
         // level object
         // why is this in the php and not in the client
@@ -152,7 +153,7 @@ class getlevel extends Controller
         if ($realLevelCount) {
             $response .= "{$amountOfLevels}";
         } else {
-            $response .= "9999";
+            $response .= '9999';
         }
         $response .= ":{$page}0:".count($levelResult);
 

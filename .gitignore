@@ -18,6 +18,8 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 /auth.json
+levels/*
+!levels/.gitkeep
 /.fleet
 /.idea
 /.nova

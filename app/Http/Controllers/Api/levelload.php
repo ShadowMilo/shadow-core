@@ -1,25 +1,26 @@
 <?php
-//modernized some stuff. kul
+
+// modernized some stuff. kul
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Support\MainLib;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class levelload extends Controller
 {
     public function index(Request $request)
     {
-        //secrer
+        // secrer
         if ($request->input('secret') !== 'Wmfd2893gb7') {
-            return response("-1, not the secret")->header('Content-Type', 'text/plain');
+            return response('-1, not the secret')->header('Content-Type', 'text/plain');
         }
 
-        //levelid
-        if (!$request->has('levelID')) {
-            return response("-1, give level id pls")->header('Content-Type', 'text/plain');
+        // levelid
+        if (! $request->has('levelID')) {
+            return response('-1, give level id pls')->header('Content-Type', 'text/plain');
         }
 
         $levelID = $request->input('levelID');
@@ -33,7 +34,7 @@ class levelload extends Controller
                 ->increment('downloads');
         }
 
-        //sxoreistrendingmoreueha
+        // sxoreistrendingmoreueha
         DB::table('levels')
             ->where('levelID', $levelID)
             ->increment('trendingScore');
@@ -42,16 +43,16 @@ class levelload extends Controller
         $level = DB::table('levels')->where('levelID', $levelID)->first();
         $path = base_path("levels/$levelID");
 
-        //strinf
+        // strinf
         if (base_Path("levels/{$levelID}")) {
             $levelstring = file_get_contents($path);
         } else {
-            return response("-1, not a level")->header('Content-Type', 'text/plain');
+            return response('-1, not a level')->header('Content-Type', 'text/plain');
         }
 
-        //levelobject
+        // levelobject
         $description = MainLib::base64url_decode($level->description);
-        
+
         $response = "1:{$level->levelID}:2:{$level->name}:3:{$description}:4:$levelstring:5:{$level->version}:6:{$level->userID}:10:{$level->downloads}:14:{$level->likes}:15:{$level->length}";
 
         return response($response)->header('Content-Type', 'text/plain');
